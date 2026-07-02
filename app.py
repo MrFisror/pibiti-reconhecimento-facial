@@ -1,3 +1,8 @@
+import os
+import sys
+os.system(f"{sys.executable} -m pip uninstall -y opencv-python")
+os.system(f"{sys.executable} -m pip install opencv-python-headless")
+
 import streamlit as st
 import cv2
 from deepface import DeepFace
