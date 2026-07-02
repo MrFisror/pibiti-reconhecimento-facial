@@ -1,8 +1,3 @@
-import sys
-import subprocess
-
-subprocess.call([sys.executable, "-m", "pip", "uninstall", "-y", "opencv-python"])
-subprocess.call([sys.executable, "-m", "pip", "install", "opencv-python-headless"])
 
 import streamlit as st
 import cv2
