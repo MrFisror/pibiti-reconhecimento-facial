@@ -81,8 +81,8 @@ def processar_frame_deepface(img_frame):
             cv2.putText(img_frame, texto, (x1, posicao_y), cv2.FONT_HERSHEY_SIMPLEX, tamanho_fonte, (0, 0, 0), espessura + 2, cv2.LINE_AA)
             cv2.putText(img_frame, texto, (x1, posicao_y), cv2.FONT_HERSHEY_SIMPLEX, tamanho_fonte, cor, espessura, cv2.LINE_AA)
             
-    except Exception:
-        pass
+    except Exception as e:
+        st.exception(e)
         
     return img_frame, rostos_processados
 

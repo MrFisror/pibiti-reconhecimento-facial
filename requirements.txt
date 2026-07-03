@@ -1,6 +1,11 @@
-streamlit==1.58.0
-deepface==0.0.100
-tensorflow-cpu==2.21.0
-opencv-python-headless==4.10.0.84
-numpy<2
-tf-keras
+streamlit==1.13.0
+deepface==0.0.99
+tensorflow==2.10.0
+keras==2.10.0
+numpy==1.23.5
+opencv-python==4.8.1.78
+retina-face==0.0.17
+protobuf==3.19.6
+pandas==2.3.3
+mtcnn==1.0.0
+gdown==6.0.0
