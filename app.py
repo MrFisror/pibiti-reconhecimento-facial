@@ -4,6 +4,7 @@ from deepface import DeepFace
 import os
 import glob
 import time
+import numpy as np
 
 # Configuração da página
 st.set_page_config(page_title="Auditoria Facial - PIBITI", page_icon="🖥️", layout="wide")
@@ -157,3 +158,36 @@ if arquivo_video is not None:
             
         cap.release()
         if os.path.exists("temp_video.mp4"): os.remove("temp_video.mp4")
+
+# =====================================================================
+# BLOCO 3: WEBCAM EM TEMPO REAL
+# =====================================================================
+st.markdown("---")
+st.subheader("📷 Auditoria via Webcam (Tempo Real)")
+st.write("Tire uma foto na hora para testar o sistema.")
+
+captura_webcam = st.camera_input("Capturar Rosto")
+
+if captura_webcam is not None:
+    st.info("A processar verificação de segurança...")
+    
+    # Limpa o cache do DeepFace
+    for pkl in glob.glob(os.path.join(pasta_banco_dados, "*.pkl")):
+        os.remove(pkl)
+        
+    # Converter a imagem do Streamlit para o OpenCV
+    file_bytes = np.asarray(bytearray(captura_webcam.read()), dtype=np.uint8)
+    img_webcam = cv2.imdecode(file_bytes, 1)
+    
+    # Processar a imagem
+    img_processada, rostos = processar_frame_deepface(img_webcam)
+    
+    # Exibir o resultado
+    if rostos > 0:
+        img_rgb = cv2.cvtColor(img_processada, cv2.COLOR_BGR2RGB)
+        st.image(img_rgb, caption="Resultado da Análise Biométrica", use_column_width=True)
+        st.success("Análise concluída!")
+    else:
+        st.warning("⚠️ Nenhum rosto detectado na foto. Tente novamente com melhor iluminação e de frente para a câmara.")
+```eof
+
