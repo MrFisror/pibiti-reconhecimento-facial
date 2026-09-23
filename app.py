@@ -189,5 +189,4 @@ if captura_webcam is not None:
         st.success("Análise concluída!")
     else:
         st.warning("⚠️ Nenhum rosto detectado na foto. Tente novamente com melhor iluminação e de frente para a câmara.")
-```eof
 
